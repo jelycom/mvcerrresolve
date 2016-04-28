@@ -1,5 +1,6 @@
 package cn.jely.cd;
 
+import cn.jely.cd.domain.ActionJsonResult;
 import cn.jely.cd.domain.DemoDomain;
 import cn.jely.cd.exception.BusinessException;
 import org.springframework.stereotype.Controller;
@@ -44,12 +45,23 @@ public class DemoController {
     public void dao(HttpServletResponse response, Integer id) throws Exception {
         demoService.daoexp(id);
     }
-
+    @RequestMapping(value = "error")
+    @ResponseBody
+    public DemoDomain error() {
+        throw new BusinessException("ajax", "ajaxError1");
+    }
     @RequestMapping(value = "/ajax")
     @ResponseBody
-    public DemoDomain xml() {
-        DemoDomain demoDomain = new DemoDomain();
-        demoDomain.preSave();
-        return demoDomain;
+    public ActionJsonResult ajax(Integer id) {
+        switch (id){
+            case 1:
+                throw new BusinessException("10", "controller10");
+            case 2:
+                throw new InvalidParameterException("Controller Parameter Error");
+            default:
+                DemoDomain demoDomain = new DemoDomain();
+                demoDomain.preSave();
+                return ActionJsonResult.successResult(demoDomain);
+        }
     }
 }

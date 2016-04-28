@@ -13,9 +13,15 @@
     <slf4j.version>1.7.7</slf4j.version>
     <logback.version>1.0.9</logback.version>
     <jackson.version>2.1.0</jackson.version>
+    <aspectj.version>1.7.0</aspectj.version>
     <!--<dozer.version>5.5.1</dozer.version>-->
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
